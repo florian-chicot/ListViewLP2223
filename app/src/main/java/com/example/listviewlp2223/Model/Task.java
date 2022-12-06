@@ -1,4 +1,4 @@
-package Model;
+package com.example.listviewlp2223.Model;
 
 public class Task {
     private int id;
