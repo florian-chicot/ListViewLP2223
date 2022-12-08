@@ -4,11 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
 import com.example.listviewlp2223.Model.Task;
+import com.example.listviewlp2223.Tools.InterfaceMyListener;
 import com.example.listviewlp2223.Tools.MyAdapter;
 
 import java.util.ArrayList;
@@ -29,6 +31,22 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
         myAdapter = new MyAdapter(data);
         recyclerView.setAdapter(myAdapter);
+        MyAdapter.setMyListener(new InterfaceMyListener() {
+            @Override
+            public void onItemClick(int position, View view) {
+                Task task = data.get(position);
+                new AlertDialog.Builder(view.getContext())
+                        .setTitle(task.getTitle())
+                        .setMessage(task.getDescription())
+                        .show();
+            }
+
+            @Override
+            public void onItemLongClick(int position, View view) {
+                data.remove(position);
+                myAdapter.notifyItemChanged(position);
+            }
+        });
     }
 
     public void addTask(View view) {
