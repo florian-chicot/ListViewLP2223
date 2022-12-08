@@ -20,8 +20,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
     List<Task> localData = new ArrayList<>();
 
     public MyAdapter(List<Task> l) {
-        super();
-        localData.addAll(l);
+        //super();
+        //localData.addAll(l);
+        localData = l;
     }
 
     // Create new views (invoked by layout manager)
